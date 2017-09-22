@@ -1,10 +1,11 @@
 package com.samuelbwr.fileReader;
 
-import com.samuelbwr.cities.City;
-
 import java.nio.file.Path;
-import java.util.List;
+import java.util.stream.Stream;
 
-public interface FileReader {
-    List<City> read(Path filePath);
+public interface FileReader<T> {
+
+    Stream<String> streamLines(Path filePath);
+
+    Stream<String[]> streamOrderedAttributes(Path filePath);
 }
