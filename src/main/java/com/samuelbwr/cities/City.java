@@ -1,16 +1,16 @@
 package com.samuelbwr.cities;
 
 public class City {
-    private String ibge_id;
-    private String uf;
-    private String name;
-    private String capital;
-    private String lon;
-    private String lat;
-    private String no_accents;
-    private String alternative_names;
-    private String microregion;
-    private String mesoregion;
+    String ibge_id;
+    String uf;
+    String name;
+    String capital;
+    String lon;
+    String lat;
+    String no_accents;
+    String alternative_names;
+    String microregion;
+    String mesoregion;
 
 
     public String getIbge_id() {
@@ -125,5 +125,21 @@ public class City {
         result = 31 * result + (microregion != null ? microregion.hashCode() : 0);
         result = 31 * result + (mesoregion != null ? mesoregion.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "ibge_id='" + ibge_id + '\'' +
+                ", uf='" + uf + '\'' +
+                ", name='" + name + '\'' +
+                ", capital='" + capital + '\'' +
+                ", lon='" + lon + '\'' +
+                ", lat='" + lat + '\'' +
+                ", no_accents='" + no_accents + '\'' +
+                ", alternative_names='" + alternative_names + '\'' +
+                ", microregion='" + microregion + '\'' +
+                ", mesoregion='" + mesoregion + '\'' +
+                '}';
     }
 }

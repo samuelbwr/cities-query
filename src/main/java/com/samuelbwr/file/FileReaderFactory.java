@@ -1,4 +1,4 @@
-package com.samuelbwr.fileReader;
+package com.samuelbwr.file;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +8,7 @@ public class FileReaderFactory {
 
     public static FileReader getInstance(Path path) {
         String fileType = getFileType( path );
-        if (fileType.equals( "csv" ))
+        if (fileType.equals( "text/csv" ))
             return new CsvReader();
         throw new RuntimeException( "No format found" );
     }
