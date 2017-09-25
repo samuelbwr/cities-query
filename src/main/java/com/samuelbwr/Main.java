@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException {
         Scanner scanner = new Scanner( System.in );
         String command;
-        CityService service = new CityService();
+        CityService service = new CityService("cities.csv");
 
         do {
             System.out.println( "Enter a command or exit with 'exit'" );

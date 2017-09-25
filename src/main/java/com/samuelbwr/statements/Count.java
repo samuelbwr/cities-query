@@ -24,9 +24,10 @@ public class Count {
         return map.get( command.get( 0 ) ).apply( command.subList( 1, command.size() ) );
     }
 
-    public static class All implements Statement {
-        private int count;
+    public static class All implements Statement<Integer> {
+        private Integer count;
 
+        public All() {}
         private All(List<String> command) {}
 
         @Override
@@ -38,9 +39,14 @@ public class Count {
         public void printResult() {
             System.out.println( "The number of records are " + count );
         }
+
+        @Override
+        public Integer getRawResult() {
+            return count;
+        }
     }
 
-    public static class Distinct implements Statement {
+    public static class Distinct implements Statement<Long> {
         String property;
         Long count;
 
@@ -63,6 +69,11 @@ public class Count {
         @Override
         public void printResult() {
             System.out.println( "The number of distinct elements is for the property " + property + " is " + count );
+        }
+
+        @Override
+        public Long getRawResult() {
+            return count;
         }
     }
 }

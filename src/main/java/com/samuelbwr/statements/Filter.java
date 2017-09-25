@@ -13,7 +13,7 @@ public class Filter {
         return new ByProperty( command.get( 0 ), command.get( 1 ) );
     }
 
-    public static class ByProperty implements Statement {
+    public static class ByProperty implements Statement<Set> {
         String property;
         String value;
         Set<City> filteredCities;
@@ -34,6 +34,11 @@ public class Filter {
         public void printResult() {
             System.out.println( "The cities filtered that has the property "+property+" with the value of '"+value+"' are:");
             filteredCities.forEach( System.out::println );
+        }
+
+        @Override
+        public Set getRawResult() {
+            return filteredCities;
         }
     }
 }

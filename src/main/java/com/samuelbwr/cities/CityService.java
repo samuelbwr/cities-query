@@ -9,8 +9,8 @@ public class CityService {
     private CityDao dao;
     private Interpreter interpreter;
 
-    public CityService() {
-        dao = new CityDao();
+    public CityService(String fileLocation) {
+        dao = new CityDao(fileLocation);
         interpreter = new CommandInterpreter();
     }
 
