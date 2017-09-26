@@ -2,6 +2,7 @@ package com.samuelbwr.statements;
 
 import com.samuelbwr.cities.City;
 import com.samuelbwr.cities.CityAccessor;
+import com.samuelbwr.print.Printable;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Count {
         private Integer count;
 
         public All() {}
+
         private All(List<String> command) {}
 
         @Override
@@ -36,7 +38,7 @@ public class Count {
         }
 
         @Override
-        public void printResult() {
+        public void print() {
             System.out.println( "The number of records are " + count );
         }
 
@@ -46,7 +48,7 @@ public class Count {
         }
     }
 
-    public static class Distinct implements Statement<Long> {
+    public static class Distinct implements Statement<Long>{
         String property;
         Long count;
 
@@ -67,7 +69,7 @@ public class Count {
         }
 
         @Override
-        public void printResult() {
+        public void print() {
             System.out.println( "The number of distinct elements is for the property " + property + " is " + count );
         }
 

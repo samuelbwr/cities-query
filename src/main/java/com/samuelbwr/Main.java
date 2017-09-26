@@ -16,7 +16,7 @@ public class Main {
             System.out.println( "Enter a command or exit with 'exit'" );
             command = scanner.nextLine();
             if (!"exit".equals( command )) {
-                service.runCommand( command );
+                service.runCommand( command ).print();
             }
         } while (!"exit".equals( command ));
     }

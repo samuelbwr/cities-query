@@ -8,12 +8,20 @@ import java.nio.file.Paths;
 public class FileReaderFactory {
 
     public static FileReader getInstance(String filePath) {
-        ClassLoader classLoader = FileReaderFactory.class.getClassLoader();
-        Path path = Paths.get( classLoader.getResource( filePath ).getFile() );
+        Path path = getPath( filePath );
         String fileType = getFileType( path );
         if (fileType.equals( "text/csv" ))
             return new CsvReader( path, "," );
-        throw new RuntimeException( "No format found" );
+        throw new FileTypeNotSupportedException();
+    }
+
+    private static Path getPath(String filePath) {
+        ClassLoader classLoader = FileReaderFactory.class.getClassLoader();
+        try {
+            return Paths.get( classLoader.getResource( filePath ).getFile() );
+        } catch (NullPointerException e) {
+            throw new FileNotFoundException();
+        }
     }
 
     private static String getFileType(Path path) {

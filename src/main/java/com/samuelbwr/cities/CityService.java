@@ -2,6 +2,7 @@ package com.samuelbwr.cities;
 
 import com.samuelbwr.interpreters.CommandInterpreter;
 import com.samuelbwr.interpreters.Interpreter;
+import com.samuelbwr.print.Printable;
 import com.samuelbwr.statements.Statement;
 
 public class CityService {
@@ -14,9 +15,9 @@ public class CityService {
         interpreter = new CommandInterpreter();
     }
 
-    public void runCommand(String command) {
+    public Statement runCommand(String command) {
         Statement statement = interpreter.interpret( command );
         dao.runStatement( statement );
-        statement.printResult();
+        return statement;
     }
 }

@@ -22,7 +22,7 @@ public class CsvReader implements FileReader {
         try (Stream<String> stream = Files.lines( filePath )) {
             return stream.map( line -> line.split( separator ) ).collect( Collectors.toList() );
         } catch (IOException e) {
-            throw new RuntimeException( "Unable to read to city" );
+            throw new FileNotFoundException();
         }
     }
 

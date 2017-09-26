@@ -9,16 +9,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class CsvReaderTest {
+
     @Test
     public void ensureCanReadResourcesCsv() {
-        FileReader reader = new CsvReader( getFilePath(), "," );
+        FileReader reader = new CsvReader( getFilePath("short-cidades.csv"), "," );
         List<String[]> list = reader.toListWithOrderedAttributes();
         Assert.assertThat( list.size(), CoreMatchers.equalTo( 5 ) );
     }
 
-    private Path getFilePath() {
+    private Path getFilePath(String filePath) {
         ClassLoader classLoader = CsvReaderTest.class.getClassLoader();
-        return Paths.get( classLoader.getResource( "short-cidades.csv" ).getFile() );
+        return Paths.get( classLoader.getResource( filePath ).getFile() );
     }
 
 }

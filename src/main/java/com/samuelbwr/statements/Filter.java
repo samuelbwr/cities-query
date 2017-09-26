@@ -2,6 +2,7 @@ package com.samuelbwr.statements;
 
 import com.samuelbwr.cities.City;
 import com.samuelbwr.cities.CityAccessor;
+import com.samuelbwr.print.Printable;
 
 import java.util.List;
 import java.util.Set;
@@ -27,12 +28,12 @@ public class Filter {
         public void run(List<City> cities) {
             filteredCities = cities.stream()
                     .filter( city -> CityAccessor.namedGetters.get( property ).apply( city ).equals( value ) )
-                    .collect( Collectors.toSet());
+                    .collect( Collectors.toSet() );
         }
 
         @Override
-        public void printResult() {
-            System.out.println( "The cities filtered that has the property "+property+" with the value of '"+value+"' are:");
+        public void print() {
+            System.out.println( "The cities filtered that has the property " + property + " with the value of '" + value + "' are:" );
             filteredCities.forEach( System.out::println );
         }
 
