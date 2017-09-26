@@ -10,13 +10,17 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException {
         Scanner scanner = new Scanner( System.in );
         String command;
-        CityService service = new CityService("cities.csv");
+        CityService service = new CityService( "cidades.csv" );
 
         do {
             System.out.println( "Enter a command or exit with 'exit'" );
             command = scanner.nextLine();
             if (!"exit".equals( command )) {
-                service.runCommand( command ).print();
+                try {
+                    service.runCommand( command ).print();
+                } catch (RuntimeException e) {
+                    System.out.println( e.getMessage() );
+                }
             }
         } while (!"exit".equals( command ));
     }

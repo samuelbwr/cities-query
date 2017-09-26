@@ -2,11 +2,12 @@ package com.samuelbwr.statements;
 
 import com.samuelbwr.cities.City;
 import com.samuelbwr.cities.CityAccessor;
-import com.samuelbwr.print.Printable;
+import com.samuelbwr.interpreters.CommandNotImplementedException;
 
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,18 +15,20 @@ import java.util.stream.Stream;
 import static java.util.Collections.unmodifiableMap;
 
 
-public class Count {
+public interface Count {
 
-    private static final Map<String, Function<List, Statement>> map = unmodifiableMap( Stream.of(
+    Map<String, Function<List, Statement>> map = unmodifiableMap( Stream.of(
             new AbstractMap.SimpleImmutableEntry<String, Function<List, Statement>>( "*", All::new ),
             new AbstractMap.SimpleImmutableEntry<String, Function<List, Statement>>( "distinct", Distinct::new ) )
             .collect( Collectors.toMap( (e) -> e.getKey(), (e) -> e.getValue() ) ) );
 
-    public static Statement getInstance(List<String> command) {
-        return map.get( command.get( 0 ) ).apply( command.subList( 1, command.size() ) );
+    static Statement getInstance(List<String> command) {
+        return Optional.ofNullable( map.get( command.get( 0 ) ) )
+                .orElseThrow( StatementNotImplementedException::new )
+                .apply( command.subList( 1, command.size() ) );
     }
 
-    public static class All implements Statement<Integer> {
+    class All implements Statement<Integer> {
         private Integer count;
 
         public All() {}
@@ -48,12 +51,13 @@ public class Count {
         }
     }
 
-    public static class Distinct implements Statement<Long>{
-        String property;
+    class Distinct implements Statement<Long>{
+        Function property;
         Long count;
 
         public Distinct(String property) {
-            this.property = property;
+            this.property = Optional.ofNullable( CityAccessor.namedGetters.get( property ) )
+                    .orElseThrow( PropertyNotFoundException::new );
         }
 
         private Distinct(List<String> command) {
@@ -63,7 +67,7 @@ public class Count {
         @Override
         public void run(List<City> cities) {
             count = cities.stream()
-                    .map( (city -> CityAccessor.namedGetters.get( property ).apply( city )) )
+                    .map( (city -> property.apply( city )) )
                     .distinct()
                     .count();
         }

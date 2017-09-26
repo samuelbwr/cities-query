@@ -5,7 +5,9 @@ import com.samuelbwr.cities.CityAccessor;
 import com.samuelbwr.print.Printable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Filter {
@@ -15,19 +17,20 @@ public class Filter {
     }
 
     public static class ByProperty implements Statement<Set> {
-        String property;
+        Function property;
         String value;
         Set<City> filteredCities;
 
         public ByProperty(String property, String value) {
-            this.property = property;
+            this.property = Optional.ofNullable( CityAccessor.namedGetters.get( property ) )
+                    .orElseThrow( PropertyNotFoundException::new );
             this.value = value;
         }
 
         @Override
         public void run(List<City> cities) {
             filteredCities = cities.stream()
-                    .filter( city -> CityAccessor.namedGetters.get( property ).apply( city ).equals( value ) )
+                    .filter( city -> property.apply( city ).equals( value ) )
                     .collect( Collectors.toSet() );
         }
 

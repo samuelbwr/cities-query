@@ -17,7 +17,7 @@ public class CommandInterpreterTest {
 
     @Test
     public void ensureCanInterpretCountDistinct(){
-        Statement statement = new CommandInterpreter().interpret( "count distinct something" );
+        Statement statement = new CommandInterpreter().interpret( "count distinct uf" );
         Assert.assertThat( statement, CoreMatchers.instanceOf( Count.Distinct.class ) );
     }
 
@@ -27,7 +27,7 @@ public class CommandInterpreterTest {
         Assert.assertThat( statement, CoreMatchers.instanceOf( Filter.ByProperty.class ) );
     }
 
-    @Test(expected = CommandNotFoundException.class)
+    @Test(expected = CommandNotImplementedException.class)
     public void ensureCantInterpretInvalidCommand(){
         new CommandInterpreter().interpret( "add uf value" );
     }

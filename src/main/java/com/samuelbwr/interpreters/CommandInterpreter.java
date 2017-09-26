@@ -15,7 +15,7 @@ public class CommandInterpreter implements Interpreter<String> {
         List<String> splitted = Arrays.asList( command.split( " " ) );
         String statement = splitted.get( 0 );
         return Optional.ofNullable( statements.get( statement ) )
-                .orElseThrow( CommandNotFoundException::new )
+                .orElseThrow( CommandNotImplementedException::new )
                 .apply( splitted.stream().skip( 1 ).collect( Collectors.toList() ) );
     }
 }
