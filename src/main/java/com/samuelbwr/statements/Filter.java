@@ -2,7 +2,6 @@ package com.samuelbwr.statements;
 
 import com.samuelbwr.cities.City;
 import com.samuelbwr.cities.CityAccessor;
-import com.samuelbwr.print.Printable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +16,9 @@ public class Filter {
     }
 
     public static class ByProperty implements Statement<Set> {
-        Function property;
-        String value;
-        Set<City> filteredCities;
+        private Function property;
+        private String value;
+        private Set<City> filteredCities;
 
         public ByProperty(String property, String value) {
             this.property = Optional.ofNullable( CityAccessor.namedGetters.get( property ) )

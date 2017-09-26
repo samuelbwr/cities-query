@@ -2,7 +2,6 @@ package com.samuelbwr.statements;
 
 import com.samuelbwr.cities.City;
 import com.samuelbwr.cities.CityAccessor;
-import com.samuelbwr.interpreters.CommandNotImplementedException;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -31,9 +30,11 @@ public interface Count {
     class All implements Statement<Integer> {
         private Integer count;
 
-        public All() {}
+        public All() {
+        }
 
-        private All(List<String> command) {}
+        private All(List<String> command) {
+        }
 
         @Override
         public void run(List<City> cities) {
@@ -51,9 +52,9 @@ public interface Count {
         }
     }
 
-    class Distinct implements Statement<Long>{
-        Function property;
-        Long count;
+    class Distinct implements Statement<Long> {
+        private Function property;
+        private Long count;
 
         public Distinct(String property) {
             this.property = Optional.ofNullable( CityAccessor.namedGetters.get( property ) )

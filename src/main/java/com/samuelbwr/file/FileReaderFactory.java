@@ -7,10 +7,12 @@ import java.nio.file.Paths;
 
 public class FileReaderFactory {
 
+    public static final String TEXT_CSV = "text/csv";
+
     public static FileReader getInstance(String filePath) {
         Path path = getPath( filePath );
         String fileType = getFileType( path );
-        if (fileType.equals( "text/csv" ))
+        if (fileType.equals( TEXT_CSV ))
             return new CsvReader( path, "," );
         throw new FileTypeNotSupportedException();
     }

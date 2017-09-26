@@ -15,7 +15,7 @@ public class CityMapperTest {
         String[] list = new String[]{ "1","SC","Teste","","-1.2","-2.11","Teste","","Teste","Teste" };
         CityMapper cityMapper = new CityMapper();
         City city = cityMapper.fromOrderedList( list );
-        assertEquals( city.getIbge_id(), list[ 0 ] );
+        assertEquals( city.getIbgeId(), list[ 0 ] );
     }
 
     @Test

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CityDaoTest {
 
-    CityDao dao;
+    private CityDao dao;
 
     @Before
     public void before() {

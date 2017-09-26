@@ -2,7 +2,6 @@ package com.samuelbwr.cities;
 
 import com.samuelbwr.interpreters.CommandInterpreter;
 import com.samuelbwr.interpreters.Interpreter;
-import com.samuelbwr.print.Printable;
 import com.samuelbwr.statements.Statement;
 
 public class CityService {
@@ -11,7 +10,7 @@ public class CityService {
     private Interpreter interpreter;
 
     public CityService(String fileLocation) {
-        dao = new CityDao(fileLocation);
+        dao = new CityDao( fileLocation );
         interpreter = new CommandInterpreter();
     }
 

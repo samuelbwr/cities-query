@@ -8,14 +8,14 @@ import java.util.List;
 
 public class CityDao {
 
-    private static List<City> CITIES;
+    private final List<City> cities;
 
     public CityDao(String fileLocation) {
         Mapper mapper = new CityMapper();
-        CITIES = mapper.bulkFromOrderedList( FileReaderFactory.getInstance( fileLocation ).toListWithOrderedAttributes() );
+        cities = mapper.bulkFromOrderedList( FileReaderFactory.getInstance( fileLocation ).toListWithOrderedAttributes() );
     }
 
     public void runStatement(Statement statement) {
-        statement.run( CITIES );
+        statement.run( cities );
     }
 }

@@ -1,24 +1,26 @@
 package com.samuelbwr.cities;
 
+import java.util.Objects;
+
 public class City {
-    String ibge_id;
-    String uf;
-    String name;
-    String capital;
-    String lon;
-    String lat;
-    String no_accents;
-    String alternative_names;
-    String microregion;
-    String mesoregion;
+    private String ibgeId;
+    private String uf;
+    private String name;
+    private String capital;
+    private String lon;
+    private String lat;
+    private String noAccents;
+    private String alternativeNames;
+    private String microregion;
+    private String mesoregion;
 
 
-    public String getIbge_id() {
-        return ibge_id;
+    public String getIbgeId() {
+        return ibgeId;
     }
 
-    public void setIbge_id(String ibge_id) {
-        this.ibge_id = ibge_id;
+    public void setIbgeId(String ibgeId) {
+        this.ibgeId = ibgeId;
     }
 
     public String getLon() {
@@ -60,20 +62,20 @@ public class City {
     public void setCapital(String capital) {
         this.capital = capital;
     }
-    public String getNo_accents() {
-        return no_accents;
+    public String getNoAccents() {
+        return noAccents;
     }
 
-    public void setNo_accents(String no_accents) {
-        this.no_accents = no_accents;
+    public void setNoAccents(String noAccents) {
+        this.noAccents = noAccents;
     }
 
-    public String getAlternative_names() {
-        return alternative_names;
+    public String getAlternativeNames() {
+        return alternativeNames;
     }
 
-    public void setAlternative_names(String alternative_names) {
-        this.alternative_names = alternative_names;
+    public void setAlternativeNames(String alternativeNames) {
+        this.alternativeNames = alternativeNames;
     }
 
     public String getMicroregion() {
@@ -96,48 +98,35 @@ public class City {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         City city = (City) o;
-
-        if (ibge_id != null ? !ibge_id.equals( city.ibge_id ) : city.ibge_id != null) return false;
-        if (uf != null ? !uf.equals( city.uf ) : city.uf != null) return false;
-        if (name != null ? !name.equals( city.name ) : city.name != null) return false;
-        if (capital != null ? !capital.equals( city.capital ) : city.capital != null) return false;
-        if (lon != null ? !lon.equals( city.lon ) : city.lon != null) return false;
-        if (lat != null ? !lat.equals( city.lat ) : city.lat != null) return false;
-        if (no_accents != null ? !no_accents.equals( city.no_accents ) : city.no_accents != null) return false;
-        if (alternative_names != null ? !alternative_names.equals( city.alternative_names ) : city.alternative_names != null)
-            return false;
-        if (microregion != null ? !microregion.equals( city.microregion ) : city.microregion != null) return false;
-        return mesoregion != null ? mesoregion.equals( city.mesoregion ) : city.mesoregion == null;
+        return Objects.equals( ibgeId, city.ibgeId ) &&
+                Objects.equals( uf, city.uf ) &&
+                Objects.equals( name, city.name ) &&
+                Objects.equals( capital, city.capital ) &&
+                Objects.equals( lon, city.lon ) &&
+                Objects.equals( lat, city.lat ) &&
+                Objects.equals( noAccents, city.noAccents ) &&
+                Objects.equals( alternativeNames, city.alternativeNames ) &&
+                Objects.equals( microregion, city.microregion ) &&
+                Objects.equals( mesoregion, city.mesoregion );
     }
 
     @Override
     public int hashCode() {
-        int result = ibge_id != null ? ibge_id.hashCode() : 0;
-        result = 31 * result + (uf != null ? uf.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (capital != null ? capital.hashCode() : 0);
-        result = 31 * result + (lon != null ? lon.hashCode() : 0);
-        result = 31 * result + (lat != null ? lat.hashCode() : 0);
-        result = 31 * result + (no_accents != null ? no_accents.hashCode() : 0);
-        result = 31 * result + (alternative_names != null ? alternative_names.hashCode() : 0);
-        result = 31 * result + (microregion != null ? microregion.hashCode() : 0);
-        result = 31 * result + (mesoregion != null ? mesoregion.hashCode() : 0);
-        return result;
+        return Objects.hash( ibgeId, uf, name, capital, lon, lat, noAccents, alternativeNames, microregion, mesoregion );
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "ibge_id='" + ibge_id + '\'' +
+                "ibgeId='" + ibgeId + '\'' +
                 ", uf='" + uf + '\'' +
                 ", name='" + name + '\'' +
                 ", capital='" + capital + '\'' +
                 ", lon='" + lon + '\'' +
                 ", lat='" + lat + '\'' +
-                ", no_accents='" + no_accents + '\'' +
-                ", alternative_names='" + alternative_names + '\'' +
+                ", noAccents='" + noAccents + '\'' +
+                ", alternativeNames='" + alternativeNames + '\'' +
                 ", microregion='" + microregion + '\'' +
                 ", mesoregion='" + mesoregion + '\'' +
                 '}';
