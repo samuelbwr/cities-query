@@ -5,6 +5,7 @@ import com.samuelbwr.statements.Statement;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CommandInterpreter implements Interpreter<String> {
@@ -13,6 +14,8 @@ public class CommandInterpreter implements Interpreter<String> {
     public Statement interpret(String command) {
         List<String> splitted = Arrays.asList( command.split( " " ) );
         String statement = splitted.get( 0 );
-        return statements.get( statement ).apply( splitted.stream().skip( 1 ).collect( Collectors.toList() ) );
+        return Optional.ofNullable( statements.get( statement ) )
+                .orElseThrow( CommandNotFoundException::new )
+                .apply( splitted.stream().skip( 1 ).collect( Collectors.toList() ) );
     }
 }
