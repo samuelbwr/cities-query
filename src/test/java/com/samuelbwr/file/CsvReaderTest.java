@@ -4,6 +4,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -17,9 +18,9 @@ public class CsvReaderTest {
         Assert.assertThat( list.size(), CoreMatchers.equalTo( 4 ) );
     }
 
-    private Path getFilePath(String filePath) {
+    private InputStream getFilePath(String filePath) {
         ClassLoader classLoader = CsvReaderTest.class.getClassLoader();
-        return Paths.get( classLoader.getResource( filePath ).getFile() );
+        return  classLoader.getResourceAsStream( filePath );
     }
 
 }

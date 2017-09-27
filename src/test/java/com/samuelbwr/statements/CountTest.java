@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 public class CountTest {
 
-
     @Test
     public void ensureCountAllCanCountList(){
         CountAll countAll = new CountAll();
