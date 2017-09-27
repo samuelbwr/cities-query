@@ -6,25 +6,26 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
 
 public class FilterTest {
 
     @Test
     public void ensureCanInstantiateFilterByPropertyStatement() {
-        Statement statement = Filter.getInstance( Arrays.asList( "uf", "value" ) );
-        Assert.assertThat( statement, CoreMatchers.instanceOf( Filter.ByProperty.class ) );
+        Statement statement = StatementFactory.getFilterInstance( Arrays.asList( "uf", "value" ) );
+        Assert.assertThat( statement, CoreMatchers.instanceOf( FilterByProperty.class ) );
     }
 
     @Test(expected = PropertyNotFoundException.class)
     public void ensureCantInstantiateInvalidCountCommand() {
-        Filter.getInstance( Arrays.asList( "other", "value" ) );
+        StatementFactory.getFilterInstance( Arrays.asList( "other", "value" ) );
     }
 
     @Test
     public void ensureCountAllCanFilterBYProperty() {
-        Filter.ByProperty filterByProperty = new Filter.ByProperty( "uf", "RS" );
-        filterByProperty.run( Arrays.asList( createCity( "SC" ), createCity( "SC" ), createCity( "RS" ) ) );
-        Assert.assertThat( filterByProperty.getRawResult().size(), CoreMatchers.equalTo( 1 ) );
+        FilterByProperty filterByProperty = new FilterByProperty( "uf", "RS" );
+        Result<Set> result = filterByProperty.run( Arrays.asList( createCity( "SC" ), createCity( "SC" ), createCity( "RS" ) ) );
+        Assert.assertThat( result.get().size(), CoreMatchers.equalTo( 1 ) );
     }
 
     private City createCity(String uf) {

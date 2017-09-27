@@ -13,8 +13,8 @@ public class CsvReaderTest {
     @Test
     public void ensureCanReadResourcesCsv() {
         FileReader reader = new CsvReader( getFilePath("short-cidades.csv"), "," );
-        List<String[]> list = reader.toListWithOrderedAttributes();
-        Assert.assertThat( list.size(), CoreMatchers.equalTo( 5 ) );
+        List<String[]> list = reader.toListWithOrderedAttributes(true);
+        Assert.assertThat( list.size(), CoreMatchers.equalTo( 4 ) );
     }
 
     private Path getFilePath(String filePath) {

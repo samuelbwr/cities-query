@@ -11,38 +11,38 @@ public class CountTest {
 
     @Test
     public void ensureCanInstantiateCountAllStatement(){
-        Statement statement = Count.getInstance( Arrays.asList( "*" ) );
-        Assert.assertThat( statement, CoreMatchers.instanceOf( Count.All.class ) );
+        Statement statement = StatementFactory.getCountInstance( Arrays.asList( "*" ) );
+        Assert.assertThat( statement, CoreMatchers.instanceOf( CountAll.class ) );
     }
 
     @Test
     public void ensureCanInstantiateCountDistinctStatement(){
-        Statement statement = Count.getInstance( Arrays.asList( "distinct", "uf" ) );
-        Assert.assertThat( statement, CoreMatchers.instanceOf( Count.Distinct.class ) );
+        Statement statement = StatementFactory.getCountInstance(Arrays.asList( "distinct", "uf" ) );
+        Assert.assertThat( statement, CoreMatchers.instanceOf( CountDistinct.class ) );
     }
 
     @Test(expected = StatementNotImplementedException.class)
     public void ensureCantInstantiateInvalidCountCommand(){
-        Count.getInstance( Arrays.asList( "aggregated" ) );
+        StatementFactory.getCountInstance( Arrays.asList( "aggregated" ) );
     }
 
     @Test(expected = PropertyNotFoundException.class)
     public void ensureCantInstantiateDistinctCountWithInvalidProperty(){
-        Count.getInstance( Arrays.asList( "distinct", "other" ) );
+        StatementFactory.getCountInstance( Arrays.asList( "distinct", "other" ) );
     }
 
     @Test
     public void ensureCountAllCanCountList(){
-        Count.All countAll = new Count.All();
-        countAll.run( Arrays.asList( new City() ) );
-        Assert.assertThat( countAll.getRawResult(), CoreMatchers.equalTo( 1 ) );
+        CountAll countAll = new CountAll();
+        Result result = countAll.run( Arrays.asList( new City() ) );
+        Assert.assertThat( result.get(), CoreMatchers.equalTo( 1 ) );
     }
 
     @Test
     public void ensureCountAllCanCountDistinct(){
-        Count.Distinct countDistinct = new Count.Distinct("uf");
-        countDistinct.run( Arrays.asList( createCity( "SC" ), createCity( "SC" ), createCity( "RS" ) ) );
-        Assert.assertThat( countDistinct.getRawResult(), CoreMatchers.equalTo( 2l ) );
+        CountDistinct countDistinct = new CountDistinct("uf");
+        Result result = countDistinct.run( Arrays.asList( createCity( "SC" ), createCity( "SC" ), createCity( "RS" ) ) );
+        Assert.assertThat( result.get(), CoreMatchers.equalTo( 2l ) );
     }
 
     private City createCity(String uf){

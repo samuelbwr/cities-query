@@ -1,6 +1,6 @@
 package com.samuelbwr.cities;
 
-import com.samuelbwr.print.Printable;
+import com.samuelbwr.statements.Result;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class CityServiceTest {
 
     @Test
     public void ensureCanRunStatement() {
-        Printable printable = cityService.runCommand( "count *" );
-        Assert.assertNotNull( printable );
+        Result result = cityService.runCommand( "count *" );
+        Assert.assertNotNull( result.get() );
     }
 }

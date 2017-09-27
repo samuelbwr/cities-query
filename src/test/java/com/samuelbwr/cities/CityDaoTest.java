@@ -1,6 +1,8 @@
 package com.samuelbwr.cities;
 
-import com.samuelbwr.statements.Count;
+import com.samuelbwr.statements.CountAll;
+import com.samuelbwr.statements.CountDistinct;
+import com.samuelbwr.statements.Result;
 import com.samuelbwr.statements.Statement;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,8 +19,8 @@ public class CityDaoTest {
 
     @Test
     public void ensureCanRunStatement() {
-        Statement statement = new Count.All();
-        dao.runStatement( statement );
-        Assert.assertEquals( statement.getRawResult(), 5 );
+        Statement statement = new CountAll();
+        Result result = dao.runStatement( statement );
+        Assert.assertEquals( result.get(), 4 );
     }
 }

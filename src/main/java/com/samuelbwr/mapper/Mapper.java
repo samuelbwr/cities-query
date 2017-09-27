@@ -6,5 +6,5 @@ public interface Mapper<T> {
 
     T fromOrderedList(String[] list);
 
-    List<T> bulkFromOrderedList(List<String[]> stream);
+    List<T> mapBulkFromOrderedList(List<String[]> stream);
 }

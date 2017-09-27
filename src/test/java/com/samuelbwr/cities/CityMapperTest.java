@@ -25,7 +25,7 @@ public class CityMapperTest {
                 new String[]{ "1","SC","Outro Teste","","-4.3","-3.21","Outro teste","","Outro teste","Outro teste" }
         );
         CityMapper cityMapper = new CityMapper();
-        List<City> cities = cityMapper.bulkFromOrderedList( list );
+        List<City> cities = cityMapper.mapBulkFromOrderedList( list );
         assertEquals( cities.size(), 2 );
     }
 }

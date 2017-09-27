@@ -1,8 +1,7 @@
 package com.samuelbwr.interpreters;
 
-import com.samuelbwr.statements.Count;
-import com.samuelbwr.statements.Filter;
 import com.samuelbwr.statements.Statement;
+import com.samuelbwr.statements.StatementFactory;
 
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -14,8 +13,8 @@ import java.util.stream.Stream;
 
 public interface Interpreter<T> {
     Map<String, Function<List, Statement>> statements = Collections.unmodifiableMap( Stream.of(
-            new AbstractMap.SimpleEntry<String, Function<List, Statement>>( "count", Count::getInstance ),
-            new AbstractMap.SimpleEntry<String, Function<List, Statement>>( "filter", Filter::getInstance ) )
+            new AbstractMap.SimpleEntry<String, Function<List, Statement>>( "count", StatementFactory::getCountInstance ),
+            new AbstractMap.SimpleEntry<String, Function<List, Statement>>( "filter", StatementFactory::getFilterInstance ) )
             .collect( Collectors.toMap( (e) -> e.getKey(), (e) -> e.getValue() ) ) );
 
     Statement interpret(T command);

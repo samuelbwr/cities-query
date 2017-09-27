@@ -17,9 +17,9 @@ public class Main {
             command = scanner.nextLine();
             if (!"exit".equals( command )) {
                 try {
-                    service.runCommand( command ).print();
+                    service.runCommand( command ).printToSystemLog();
                 } catch (RuntimeException e) {
-                    System.out.println( e.getMessage() );
+                    System.err.println( e.getMessage() );
                 }
             }
         } while (!"exit".equals( command ));

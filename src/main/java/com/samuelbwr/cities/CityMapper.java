@@ -16,7 +16,7 @@ public class CityMapper implements Mapper<City> {
     }
 
     @Override
-    public List<City> bulkFromOrderedList(List<String[]> stream) {
+    public List<City> mapBulkFromOrderedList(List<String[]> stream) {
         return stream.stream()
                 .map( splitted -> fromOrderedList( splitted ) )
                 .collect( Collectors.toList() );

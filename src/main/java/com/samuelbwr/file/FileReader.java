@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface FileReader {
 
-    List<String[]> toListWithOrderedAttributes();
+    List<String[]> toListWithOrderedAttributes(boolean skipHeader);
 }

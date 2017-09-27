@@ -18,9 +18,10 @@ public class CsvReader implements FileReader {
     }
 
     @Override
-    public List<String[]> toListWithOrderedAttributes() {
+    public List<String[]> toListWithOrderedAttributes(boolean skipHeader) {
         try (Stream<String> stream = Files.lines( filePath )) {
-            return stream.map( line -> line.split( separator ) ).collect( Collectors.toList() );
+            return stream.skip( skipHeader ? 1 : 0 )
+                    .map( line -> line.split( separator ) ).collect( Collectors.toList() );
         } catch (IOException e) {
             throw new FileNotFoundException();
         }
