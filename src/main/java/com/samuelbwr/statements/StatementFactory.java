@@ -12,14 +12,14 @@ import static java.util.Collections.unmodifiableMap;
 
 public class StatementFactory {
 
-    static Map<String, Function<List<String>, Statement>> map = unmodifiableMap( Stream.of(
+    private static Map<String, Function<List<String>, Statement>> countClasses = unmodifiableMap( Stream.of(
             new AbstractMap.SimpleImmutableEntry<String, Function<List<String>, Statement>>( "*", (list) -> new CountAll() ),
             new AbstractMap.SimpleImmutableEntry<String, Function<List<String>, Statement>>(
                     "distinct", (list) -> new CountDistinct( list.get( 0 ) ) ) )
             .collect( Collectors.toMap( (e) -> e.getKey(), (e) -> e.getValue() ) ) );
 
     public static Statement getCountInstance(List<String> command) {
-        return Optional.ofNullable( map.get( command.get( 0 ) ) )
+        return Optional.ofNullable( countClasses.get( command.get( 0 ) ) )
                 .orElseThrow( StatementNotImplementedException::new )
                 .apply( command.subList( 1, command.size() ) );
     }

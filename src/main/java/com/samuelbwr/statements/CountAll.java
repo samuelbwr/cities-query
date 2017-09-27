@@ -6,9 +6,6 @@ import java.util.List;
 
 public class CountAll implements Statement {
 
-    public CountAll() {
-    }
-
     @Override
     public Result run(List<City> cities) {
         long startTime = System.currentTimeMillis();

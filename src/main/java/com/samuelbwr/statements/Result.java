@@ -3,8 +3,8 @@ package com.samuelbwr.statements;
 import com.samuelbwr.print.ConsolePrinter;
 
 public class Result<T> {
-    final T result;
-    final long timeSpent;
+    private final T result;
+    private final long timeSpent;
 
     public Result(T result, long timeSpent) {
         this.result = result;

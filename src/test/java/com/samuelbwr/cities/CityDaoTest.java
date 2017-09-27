@@ -1,7 +1,6 @@
 package com.samuelbwr.cities;
 
 import com.samuelbwr.statements.CountAll;
-import com.samuelbwr.statements.CountDistinct;
 import com.samuelbwr.statements.Result;
 import com.samuelbwr.statements.Statement;
 import org.junit.Assert;
