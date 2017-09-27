@@ -9,33 +9,12 @@ import java.util.Arrays;
 
 public class CountTest {
 
-    @Test
-    public void ensureCanInstantiateCountAllStatement(){
-        Statement statement = StatementFactory.getCountInstance( Arrays.asList( "*" ) );
-        Assert.assertThat( statement, CoreMatchers.instanceOf( CountAll.class ) );
-    }
-
-    @Test
-    public void ensureCanInstantiateCountDistinctStatement(){
-        Statement statement = StatementFactory.getCountInstance(Arrays.asList( "distinct", "uf" ) );
-        Assert.assertThat( statement, CoreMatchers.instanceOf( CountDistinct.class ) );
-    }
-
-    @Test(expected = StatementNotImplementedException.class)
-    public void ensureCantInstantiateInvalidCountCommand(){
-        StatementFactory.getCountInstance( Arrays.asList( "aggregated" ) );
-    }
-
-    @Test(expected = PropertyNotFoundException.class)
-    public void ensureCantInstantiateDistinctCountWithInvalidProperty(){
-        StatementFactory.getCountInstance( Arrays.asList( "distinct", "other" ) );
-    }
 
     @Test
     public void ensureCountAllCanCountList(){
         CountAll countAll = new CountAll();
         Result result = countAll.run( Arrays.asList( new City() ) );
-        Assert.assertThat( result.get(), CoreMatchers.equalTo( 1 ) );
+        Assert.assertThat( result.get(), CoreMatchers.equalTo( 1l ) );
     }
 
     @Test

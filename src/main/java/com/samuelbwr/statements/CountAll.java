@@ -11,6 +11,9 @@ public class CountAll implements Statement {
 
     @Override
     public Result run(List<City> cities) {
-        return new Result( cities.size() );
+        long startTime = System.currentTimeMillis();
+        long value = cities.size();
+        long endTime = System.currentTimeMillis();
+        return new Result( value, endTime-startTime);
     }
 }

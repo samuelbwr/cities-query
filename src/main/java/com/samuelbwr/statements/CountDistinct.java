@@ -19,10 +19,13 @@ public class CountDistinct implements Statement {
 
     @Override
     public Result run(List<City> cities) {
-        return new Result( cities.stream()
+        long startTime = System.currentTimeMillis();
+        long value = cities.stream()
                 .map( (city -> property.apply( city )) )
                 .distinct()
-                .count() );
+                .count();
+        long endTime = System.currentTimeMillis();
+        return new Result( value, endTime - startTime );
     }
 
 }

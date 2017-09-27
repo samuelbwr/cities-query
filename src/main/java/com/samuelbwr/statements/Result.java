@@ -4,9 +4,11 @@ import com.samuelbwr.print.ConsolePrinter;
 
 public class Result<T> {
     final T result;
+    final long timeSpent;
 
-    public Result(T result) {
+    public Result(T result, long timeSpent) {
         this.result = result;
+        this.timeSpent = timeSpent;
     }
 
     public T get() {
@@ -14,6 +16,6 @@ public class Result<T> {
     }
 
     public void printToSystemLog() {
-        ConsolePrinter.print(result);
+        ConsolePrinter.print(result, timeSpent);
     }
 }

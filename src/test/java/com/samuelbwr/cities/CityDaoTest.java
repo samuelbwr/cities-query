@@ -21,6 +21,6 @@ public class CityDaoTest {
     public void ensureCanRunStatement() {
         Statement statement = new CountAll();
         Result result = dao.runStatement( statement );
-        Assert.assertEquals( result.get(), 4 );
+        Assert.assertEquals( result.get(), 4l );
     }
 }

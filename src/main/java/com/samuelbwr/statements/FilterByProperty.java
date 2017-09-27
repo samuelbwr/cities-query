@@ -5,6 +5,7 @@ import com.samuelbwr.cities.CityAccessor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,12 @@ public class FilterByProperty implements Statement {
 
     @Override
     public Result run(List<City> cities) {
-        return new Result( cities.stream()
+        long startTime = System.currentTimeMillis();
+        Set list = cities.stream()
                 .filter( city -> property.apply( city ).equals( value ) )
-                .collect( Collectors.toSet() ) );
+                .collect( Collectors.toSet() );
+        long endTime = System.currentTimeMillis();
+        return new Result( list, endTime - startTime );
     }
 
 }
