@@ -3,39 +3,46 @@ package com.samuelbwr.cities;
 import java.util.Objects;
 
 public class City {
-    private String ibgeId;
+    private Integer ibgeId;
     private String uf;
     private String name;
-    private String capital;
-    private String lon;
-    private String lat;
+    private Boolean capital;
+    private Double lon;
+    private Double lat;
     private String noAccents;
     private String alternativeNames;
     private String microregion;
     private String mesoregion;
 
-
-    public String getIbgeId() {
+    public Integer getIbgeId() {
         return ibgeId;
     }
 
-    public void setIbgeId(String ibgeId) {
+    public void setIbgeId(Integer ibgeId) {
         this.ibgeId = ibgeId;
     }
 
-    public String getLon() {
+    public Boolean getCapital() {
+        return capital;
+    }
+
+    public void setCapital(Boolean capital) {
+        this.capital = capital;
+    }
+
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(String lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
@@ -55,13 +62,6 @@ public class City {
         this.name = name;
     }
 
-    public String getCapital() {
-        return capital;
-    }
-
-    public void setCapital(String capital) {
-        this.capital = capital;
-    }
     public String getNoAccents() {
         return noAccents;
     }
