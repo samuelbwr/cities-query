@@ -15,7 +15,24 @@ count distinct [property]
 filter [property] [value]
 ```
 
+The possible properties are
+
+ - ibge_id
+ - uf
+ - name
+ - capital
+ - lon 
+ - lat
+ - no_accents
+ - alternative_names 
+ - microregion
+ - mesoregion
+
+
 Code developed only with:
  - Java 8
  - Maven
  - JUnit
+ 
+ 
+ 
