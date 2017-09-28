@@ -1,6 +1,6 @@
-## cities-query ![Codacy Badge](https://api.codacy.com/project/badge/Grade/982ae1b3088742c992cb9c54c616a040)
+# Cities Query ![Codacy Badge](https://api.codacy.com/project/badge/Grade/982ae1b3088742c992cb9c54c616a040)
 
-Improvements delivered after I send the e-mail, but before the deadline: https://github.com/samuelbwr/cities-query/pull/2
+### Improvements delivered after I sent the e-mail, but before the deadline: https://github.com/samuelbwr/cities-query/pull/2
 
 Simple project to query for cities there are in a CSV file.
 
